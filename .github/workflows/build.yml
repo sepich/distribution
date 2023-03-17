@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  DOCKERHUB_SLUG: distribution/distribution
+  DOCKERHUB_SLUG: sepa/distribution
 
 jobs:
   build:
@@ -79,15 +79,3 @@ jobs:
             ${{ steps.meta.outputs.bake-file }}
           targets: image-all
           push: ${{ startsWith(github.ref, 'refs/tags/') }}
-      -
-        name: GitHub Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          draft: true
-          files: |
-            bin/*.tar.gz
-            bin/*.zip
-            bin/*.sha256
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
