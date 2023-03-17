@@ -584,7 +584,7 @@ type Events struct {
 	IncludeReferences bool `yaml:"includereferences"` // include reference data in manifest events
 }
 
-//Ignore configures mediaTypes and actions of the event, that it won't be propagated
+// Ignore configures mediaTypes and actions of the event, that it won't be propagated
 type Ignore struct {
 	MediaTypes []string `yaml:"mediatypes"` // target media types to ignore
 	Actions    []string `yaml:"actions"`    // ignore action types
@@ -639,6 +639,9 @@ type Proxy struct {
 
 	// Password of the hub user
 	Password string `yaml:"password"`
+
+	// Remove cached manifest or blob from storage after this time expires. Removal is disabled if this is 0.
+	TTL string `yaml:"ttl" default:"7"`
 }
 
 // Parse parses an input configuration yaml document into a Configuration struct
